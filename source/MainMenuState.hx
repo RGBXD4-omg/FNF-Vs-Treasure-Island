@@ -529,7 +529,18 @@ class WeekIntroSubstate extends MusicBeatSubstate{
 
 	override function update(elapsed:Float)
 		{
-			if (controls.ACCEPT && onTip)
+			#if android
+                var justTouched:Bool = false;
+
+		for (touch in FlxG.touches.list)
+		{
+			if (touch.justPressed)
+			{
+				justTouched = true;
+			}
+		}
+		#end
+			if (controls.ACCEPT #if android || justTouched #end && onTip)
 			{				
 				tips.forEach(function(spr:FlxText){
 					FlxTween.tween(spr, {alpha: 0}, 3, {
