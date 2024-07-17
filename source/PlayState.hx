@@ -242,6 +242,8 @@ class PlayState extends MusicBeatState
 		Paths.destroyLoadedImages();
 		#end
 
+		Paths.clearStoredMemory();
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -724,7 +726,10 @@ class PlayState extends MusicBeatState
 		// Updating Discord Rich Presence.
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")");
 		#end
+
 		super.create();
+
+		Paths.clearUnusedMemory();
 	}
 
 	public function addTextToDebug(text:String) {
