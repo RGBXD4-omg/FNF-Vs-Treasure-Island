@@ -6,6 +6,7 @@ import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 import lime.utils.Assets;
 import flixel.FlxSprite;
+import openfl.system.System;
 #if MODS_ALLOWED
 import sys.io.File;
 import sys.FileSystem;
@@ -45,6 +46,10 @@ class Paths
 		Paths.customImagesLoaded.clear();
 		#end
 	}
+
+	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+
+	public static var currentTrackedSounds:Map<String, Sound> = [];
 
 	public static function clearUnusedMemory()
 	{
