@@ -20,6 +20,7 @@ class FlxNewHitbox extends FlxSpriteGroup
 	public var buttonRight:FlxButton = new FlxButton(0, 0);
         public var buttonSpace:FlxButton = new FlxButton(0, 0);
 	public var buttonShift:FlxButton = new FlxButton(0, 0);
+	public var buttonCtrl:FlxButton = new FlxButton(0, 0);
 	/**
 	 * Create the zone.
 	 */
@@ -39,12 +40,13 @@ class FlxNewHitbox extends FlxSpriteGroup
 		add(buttonDown = createHint(FlxG.width / 4, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0x00FFFF));
 		add(buttonUp = createHint(FlxG.width / 2, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0x00FF00));
 		add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF0000));
-		add(buttonSpace = createHint(Std.int(FlxG.width / 2), offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFFFF00));
-		add(buttonShift = createHint(0, offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFF00B3));
+		add(buttonSpace = createHint(Std.int(FlxG.width / 2), offsetFir, Std.int(FlxG.width / 3), Std.int(FlxG.height / 4), 0xFFFF00));
+		add(buttonShift = createHint(0, offsetFir, Std.int(FlxG.width / 3), Std.int(FlxG.height / 4), 0xFF00B3));
+		add(buttonCtrl = createHint(Std.int(FlxG.width / 4), offsetFir, Std.int(FlxG.width / 3), Std.int(FlxG.height / 4), 0xFFFF00));
         
         default:
         
-        add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0xFF00FF));
+               add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0xFF00FF));
 		add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0x00FFFF));
 		add(buttonUp = createHint(FlxG.width / 2, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0x00FF00));
 		add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 1), 0xFF0000));
@@ -67,6 +69,7 @@ class FlxNewHitbox extends FlxSpriteGroup
 		buttonRight = null;
 		buttonSpace = null;
 		buttonShift = null;
+		buttonCtrl = null;
 	}
 
 	private function createHintGraphic(Width:Int, Height:Int, Color:Int = 0xFFFFFF):BitmapData
