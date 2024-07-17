@@ -69,6 +69,8 @@ class Paths
 		// run the garbage collector for good measure lmfao
 		System.gc();
 	}
+
+	public static var localTrackedAssets:Array<String> = [];
 	
 	public static function clearStoredMemory(?cleanUnused:Bool = false)
 	{
