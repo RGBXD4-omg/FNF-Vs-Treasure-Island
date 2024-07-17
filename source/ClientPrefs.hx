@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
-import Controls;
+import2 Controls;
 
 class ClientPrefs {
 	//TO DO: Redo ClientPrefs in a way that isn't too stupid
@@ -27,6 +27,9 @@ class ClientPrefs {
 	public static var imagesPersist:Bool = false;
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
+	public static var hitboxinput:Bool = true;
+	public static var hitboxalpha:Float = 0.2;
+	public static var hitboxmode:String = 'New';
 
 	public static var faceCam:Int = -1;
 
@@ -92,6 +95,9 @@ class ClientPrefs {
 		FlxG.save.data.imagesPersist = imagesPersist;
 		FlxG.save.data.ghostTapping = ghostTapping;
 		FlxG.save.data.hideTime = hideTime;
+		FlxG.save.data.hitboxinput = hitboxinput;
+		FlxG.save.data.hitboxmode = hitboxmode;
+		FlxG.save.data.hitboxalpha = hitboxalpha;
 
 		FlxG.save.data.faceCam = faceCam;
 
@@ -178,6 +184,16 @@ class ClientPrefs {
 
 		if(FlxG.save.data.faceCam != null) {
 			faceCam = FlxG.save.data.faceCam;
+		}
+
+		if(FlxG.save.data.hitboxmode != null) {
+			hitboxmode = FlxG.save.data.hitboxmode;
+		}
+		if(FlxG.save.data.hitboxalpha != null) {
+			hitboxalpha = FlxG.save.data.hitboxalpha;
+		}
+		if(FlxG.save.data.hitboxinput != null) {
+			hitboxinput = FlxG.save.data.hitboxinput;
 		}
 
 		var save:FlxSave = new FlxSave();
