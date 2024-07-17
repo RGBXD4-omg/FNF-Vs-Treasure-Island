@@ -18,24 +18,29 @@ class FlxNewHitbox extends FlxSpriteGroup
 	public var buttonDown:FlxButton = new FlxButton(0, 0);
 	public var buttonUp:FlxButton = new FlxButton(0, 0);
 	public var buttonRight:FlxButton = new FlxButton(0, 0);
-    public var buttonSpace:FlxButton = new FlxButton(0, 0);
+        public var buttonSpace:FlxButton = new FlxButton(0, 0);
+	public var buttonShift:FlxButton = new FlxButton(0, 0);
 	/**
 	 * Create the zone.
 	 */
 	public function new():Void
 	{
 		super();
+
+		final offsetFir:Int = (FlxG.save.data.mechsInputVariants ? Std.int(FlxG.height / 4) * 3 : 0);
+		final offsetSec:Int = (FlxG.save.data.mechsInputVariants ? 0 : Std.int(FlxG.height / 4));
 	
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 		
 		case 'tutorial' | 'merged' | 'darkness':
 			
-		add(buttonLeft = createHint(0, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 0.8), 0xFF00FF));
-		add(buttonDown = createHint(FlxG.width / 4, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 0.8), 0x00FFFF));
-		add(buttonUp = createHint(FlxG.width / 2, 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 0.8), 0x00FF00));
-		add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), 0, Std.int(FlxG.width / 4), Std.int(FlxG.height * 0.8), 0xFF0000));
-                add(buttonSpace = createHint(0, (FlxG.height / 5) * 4, Std.int(FlxG.width), Std.int(FlxG.height / 5), 0xFFFF00));
+		add(buttonLeft = createHint(0, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF00FF));
+		add(buttonDown = createHint(FlxG.width / 4, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0x00FFFF));
+		add(buttonUp = createHint(FlxG.width / 2, offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0x00FF00));
+		add(buttonRight = createHint((FlxG.width / 2) + (FlxG.width / 4), offsetSec, Std.int(FlxG.width / 4), Std.int(FlxG.height / 4) * 3, 0xFF0000));
+		add(buttonSpace = createHint(Std.int(FlxG.width / 2), offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFFFF00));
+		add(buttonShift = createHint(0, offsetFir, Std.int(FlxG.width / 2), Std.int(FlxG.height / 4), 0xFF00B3));
         
         default:
         
@@ -61,6 +66,7 @@ class FlxNewHitbox extends FlxSpriteGroup
 		buttonUp = null;
 		buttonRight = null;
 		buttonSpace = null;
+		buttonShift = null;
 	}
 
 	private function createHintGraphic(Width:Int, Height:Int, Color:Int = 0xFFFFFF):BitmapData
