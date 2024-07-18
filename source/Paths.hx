@@ -28,7 +28,7 @@ class Paths
 	public static var ignoreModFolders:Map<String, Bool> = new Map();
 	public static var customImagesLoaded:Map<String, FlxGraphic> = new Map();
 	public static var customSoundsLoaded:Map<String, Sound> = new Map();
-	
+	#else
 	public static var ignoreModFolders:Map<String, Bool> = new Map<String, Bool>();
 	public static var customImagesLoaded:Map<String, FlxGraphic> = new Map<String, FlxGraphic>();
 	public static var customSoundsLoaded:Map<String, Sound> = new Map<String, Sound>();
