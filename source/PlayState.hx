@@ -233,15 +233,14 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-
-		Paths.clearStoredMemory();
-		
 		switchLight = false;
 		lightsoff = FlxG.random.float(4, 8);
 		ClientPrefs.curSong = 'song';
 		FlxG.sound.list.add(sHeartBeat);
 
+		#if MODS_ALLOWED
 		Paths.destroyLoadedImages();
+		#end
 	
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
