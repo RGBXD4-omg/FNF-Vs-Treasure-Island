@@ -67,6 +67,10 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxTween.tween(staticFilter, {alpha: 0.3}, 3, {ease: FlxEase.backIn});
 			coolStartDeath();
 		});
+
+		#if android
+		addVirtualPad(NONE, A_B);
+		#end
 	}
 
 	override function update(elapsed:Float)
