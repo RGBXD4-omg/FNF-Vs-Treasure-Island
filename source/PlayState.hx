@@ -233,9 +233,6 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-
-                Paths.clearStoredMemory();
-
 		switchLight = false;
 		lightsoff = FlxG.random.float(4, 8);
 		ClientPrefs.curSong = 'song';
@@ -727,10 +724,7 @@ class PlayState extends MusicBeatState
 		// Updating Discord Rich Presence.
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")");
 		#end
-
 		super.create();
-
-		Paths.clearUnusedMemory();
 	}
 
 	public function addTextToDebug(text:String) {
@@ -1682,7 +1676,7 @@ class PlayState extends MusicBeatState
 		}
 		botplayTxt.visible = cpuControlled;
 
-		if (controls.PAUSE #if androidFlxG.android.justReleased.BACK #end && startedCountdown && canPause)
+		if (controls.PAUSE #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			var ret:Dynamic = callOnLuas('onPause', []);
 			if(ret != FunkinLua.Function_Stop) {
