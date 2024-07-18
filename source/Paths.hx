@@ -23,7 +23,7 @@ class Paths
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 	inline public static var VIDEO_EXT = "mp4";
 
-	
+	#if MODS_ALLOWED
 	#if (haxe >= "4.0.0")
 	public static var ignoreModFolders:Map<String, Bool> = new Map();
 	public static var customImagesLoaded:Map<String, FlxGraphic> = new Map();
@@ -32,9 +32,10 @@ class Paths
 	public static var ignoreModFolders:Map<String, Bool> = new Map<String, Bool>();
 	public static var customImagesLoaded:Map<String, FlxGraphic> = new Map<String, FlxGraphic>();
 	public static var customSoundsLoaded:Map<String, Sound> = new Map<String, Sound>();
-
+#end
 	#end
 
+		#if MODS_ALLOWED
 	public static function destroyLoadedImages(ignoreCheck:Bool = false) {
 		
 		if(!ignoreCheck && ClientPrefs.imagesPersist) return; //If there's 20+ images loaded, do a cleanup just for preventing a crash
@@ -45,66 +46,7 @@ class Paths
 		}
 		Paths.customImagesLoaded.clear();
 	}
-
-	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
-
-	public static var currentTrackedSounds:Map<String, Sound> = [];
-
-	public static function clearUnusedMemory()
-	{
-		// clear non local assets in the tracked assets list
-		for (key in currentTrackedAssets.keys())
-		{
-			// if it is not currently contained within the used local assets
-			if (!localTrackedAssets.contains(key))
-			{
-				// get rid of it
-				var obj = currentTrackedAssets.get(key);
-				@:privateAccess
-				if (obj != null)
-				{
-					openfl.Assets.cache.removeBitmapData(key);
-					FlxG.bitmap._cache.remove(key);
-					obj.destroy();
-					currentTrackedAssets.remove(key);
-				}
-			}
-		}
-		// run the garbage collector for good measure lmfao
-		System.gc();
-	}
-
-	public static var localTrackedAssets:Array<String> = [];
-	
-	public static function clearStoredMemory(?cleanUnused:Bool = false)
-	{
-		// clear anything not in the tracked assets list
-		@:privateAccess
-		for (key in FlxG.bitmap._cache.keys())
-		{
-			var obj = FlxG.bitmap._cache.get(key);
-			if (obj != null && !currentTrackedAssets.exists(key))
-			{
-				openfl.Assets.cache.removeBitmapData(key);
-				FlxG.bitmap._cache.remove(key);
-				obj.destroy();
-			}
-		}
-
-		// clear all sounds that are cached
-		for (key in currentTrackedSounds.keys())
-		{
-			if (!localTrackedAssets.contains(key) && key != null)
-			{
-				// trace('test: ' + dumpExclusions, key);
-				Assets.cache.clear(key);
-				currentTrackedSounds.remove(key);
-			}
-		}
-		// flags everything to be cleared out next unused memory clear
-		localTrackedAssets = [];
-		openfl.Assets.cache.clear("songs");
-	}
+	#end
 
 	static public var currentModDirectory:String = null;
 	static var currentLevel:String;
