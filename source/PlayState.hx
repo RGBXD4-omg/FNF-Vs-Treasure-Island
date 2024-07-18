@@ -238,10 +238,8 @@ class PlayState extends MusicBeatState
 		ClientPrefs.curSong = 'song';
 		FlxG.sound.list.add(sHeartBeat);
 
-		#if MODS_ALLOWED
 		Paths.destroyLoadedImages();
-		#end
-
+	
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
