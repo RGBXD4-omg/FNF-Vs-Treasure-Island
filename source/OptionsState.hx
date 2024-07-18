@@ -433,7 +433,7 @@ class OptionsState extends MusicBeatState
 			case 'FPS Counter':
 				daText = "If unchecked, hides FPS Counter.";
 			case 'Low Quality':
-				daText = "If checked, disables some background details,\ndecreases loading times and improves performance.";
+				daText = "If checked, disables some background details,\ndecreases loading times and improves performance.\Dont check it, it has a little bugs in playing games.";
 			case 'Persistent Cached Data':
 				daText = "If checked, images loaded will stay in memory\nuntil the game is closed, this increases memory usage,\nbut basically makes reloading times instant.";
 			case 'Anti-Aliasing':
