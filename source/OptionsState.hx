@@ -181,6 +181,11 @@ class OptionsState extends MusicBeatState
 		FlxG.camera.follow(camFollow, LOCKON, 1);
 		FlxG.camera.focusOn(camFollow.getPosition());
 
+		#if android
+		addVirtualPad(FULL, A_B);
+		addPadCamera();
+		#end
+
 		super.create();
 	}
 
