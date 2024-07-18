@@ -233,6 +233,9 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+
+		Paths.clearStoredMemory();
+		
 		switchLight = false;
 		lightsoff = FlxG.random.float(4, 8);
 		ClientPrefs.curSong = 'song';
