@@ -23,20 +23,20 @@ class Paths
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 	inline public static var VIDEO_EXT = "mp4";
 
-	#if MODS_ALLOWED
+	
 	#if (haxe >= "4.0.0")
 	public static var ignoreModFolders:Map<String, Bool> = new Map();
 	public static var customImagesLoaded:Map<String, FlxGraphic> = new Map();
 	public static var customSoundsLoaded:Map<String, Sound> = new Map();
-	#else
+	
 	public static var ignoreModFolders:Map<String, Bool> = new Map<String, Bool>();
 	public static var customImagesLoaded:Map<String, FlxGraphic> = new Map<String, FlxGraphic>();
 	public static var customSoundsLoaded:Map<String, Sound> = new Map<String, Sound>();
-	#end
+
 	#end
 
 	public static function destroyLoadedImages(ignoreCheck:Bool = false) {
-		#if MODS_ALLOWED
+		
 		if(!ignoreCheck && ClientPrefs.imagesPersist) return; //If there's 20+ images loaded, do a cleanup just for preventing a crash
 
 		for (key => graphic in customImagesLoaded) {
@@ -44,7 +44,6 @@ class Paths
 			graphic.destroy();
 		}
 		Paths.customImagesLoaded.clear();
-		#end
 	}
 
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
